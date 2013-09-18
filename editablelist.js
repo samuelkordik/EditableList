@@ -1,9 +1,7 @@
 (function($) {
 	$.extend({
-		editableList: new function(options) {
-			if (options && typeof(options) == 'object') {
-			}
-
+		editableList: new function() {
+			var new_options = {};
 			function rebindKeys(el) {
 				$(el).each(function(i,e){
 					$(e).keyup(function(event){
@@ -16,6 +14,7 @@
 							$(this).remove();
 						}
 					});
+					$(e).change(new_options.onChange);
 				});
 			}
 
@@ -28,6 +27,12 @@
 			}
 
 			this.construct = function(options) {
+				if (options && typeof(options) == 'object') {
+					new_options = $.extend({
+							onChange: function() {}
+						}, options);
+				}
+
 				if (options && typeof(options) == 'string') {
 					if (options == 'toArray') {
 						return toArray(this);
@@ -42,7 +47,9 @@
 
 							});
 
-							$(this).sortable();
+							$(this).sortable({
+								stop: new_options.onChange
+							});
 
 
 							// add button

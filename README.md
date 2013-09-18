@@ -14,4 +14,6 @@ This plugin requires jQuery and jQuery UI. Usage is simple: call $().editableLis
 
 Call $().editableList("toArray") to get an ordered array out from the element of the values.
 
+Use the option "onChange:" to set a callback function that will be called whenever the list changes (either through being reordered or through text changes).
+
 Look at the `demo.html` file to see an example of CSS.

@@ -9,10 +9,11 @@
     <script src="editablelist.js"></script>
     <script>
       $(document).ready(function(){
-        $(".editable-list").editableList();
-        $("#to_array").click(function(i,e){
-          var output = $(".editable-list").editableList("toArray");
-          $("#array_dump").text(output.toString());
+        $(".editable-list").editableList({
+          onChange: function(){
+            var output = $(".editable-list").editableList("toArray");
+            $("#array_dump").text(output.toString());
+          }
         });
       });
     </script>
@@ -56,7 +57,7 @@
               </ul>
             </div>
             <div class="form-group col-md-4">
-              <button class="btn btn-primary btn-lg" id="to_array">Press to generate array</button>
+              <h4>Output</h4>
               <p class="well" id="array_dump"></p>
             </div>
           </div>
